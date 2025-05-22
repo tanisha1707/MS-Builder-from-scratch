@@ -8,6 +8,10 @@ const firebaseConfig = {
   storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
   messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+};
+
+if (Object.values(firebaseConfig).some((v) => !v)) {
+  throw new Error("Firebase config is incomplete. Check environment variables.")
 }
 
 const app = getApps().length ? getApp() : initializeApp(firebaseConfig)

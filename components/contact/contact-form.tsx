@@ -40,6 +40,7 @@ export default function ContactForm() {
       })
 
       setSuccess(true)
+      setTimeout(() => setSuccess(false), 5000)
       setFormData({
         name: "",
         email: "",
