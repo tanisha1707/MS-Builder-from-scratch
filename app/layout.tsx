@@ -4,8 +4,7 @@ import { Inter } from "next/font/google"
 import "./globals.css"
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
-import { FirebaseProvider } from "@/context/firebase-context"
-
+import FirebaseProviderWrapper from "@/components/firebase-provider-wrapper" // import wrapper
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -22,13 +21,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <FirebaseProvider>
+        <FirebaseProviderWrapper>
           <div className="flex min-h-screen flex-col">
             <Navbar />
             <main className="flex-1">{children}</main>
             <Footer />
           </div>
-        </FirebaseProvider>
+        </FirebaseProviderWrapper>
       </body>
     </html>
   )

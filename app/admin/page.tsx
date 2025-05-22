@@ -13,13 +13,22 @@ export default function AdminPage() {
   const router = useRouter()
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser)
-      setLoading(false)
-    })
+  const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+    if (currentUser) {
+     
+      const cameFromLogin = sessionStorage.getItem("adminLoggedIn")
+      if (cameFromLogin) {
+        setUser(currentUser)
+      } else {
+       
+        auth.signOut()
+      }
+    }
+    setLoading(false)
+  })
 
-    return () => unsubscribe()
-  }, [])
+  return () => unsubscribe()
+}, [])
 
   if (loading) {
     return (

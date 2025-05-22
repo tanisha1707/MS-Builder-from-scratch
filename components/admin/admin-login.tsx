@@ -20,6 +20,7 @@ export default function AdminLogin() {
 
     try {
       await signInWithEmailAndPassword(auth, email, password)
+       sessionStorage.setItem("adminLoggedIn", "true")
     } catch (error: any) {
       console.error("Error signing in:", error)
       setError(error.message || "Failed to sign in. Please check your credentials.")
