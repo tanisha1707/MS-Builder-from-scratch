@@ -15,9 +15,7 @@ export default function AddPropertyPage() {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser)
       setLoading(false)
-      if (!currentUser) {
-        router.push("/admin")
-      }
+      if (!currentUser) router.push("/admin")
     })
 
     return () => unsubscribe()
@@ -29,10 +27,6 @@ export default function AddPropertyPage() {
         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
       </div>
     )
-  }
-
-  if (!user) {
-    return null
   }
 
   return (
