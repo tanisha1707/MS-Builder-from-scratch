@@ -61,9 +61,10 @@ export default function AdminPropertyForm({ property }: { property?: Property })
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files != null) {
-     const filesArray = Array.from(e.target.files as FileList)
-     setImages((prev) => [...prev, ...filesArray])
+      const filesArray = Array.from(e.target.files as FileList)
+      setImages((prev) => [...prev, ...filesArray])
     }
+  }
 
   const handleFeatureChange = (index: number, value: string) => {
     const updated = [...formData.features]
@@ -115,12 +116,10 @@ export default function AdminPropertyForm({ property }: { property?: Property })
     } catch (err) {
       console.error(err)
       setError("Failed to save property. Please try again.")
-      setLoading(false)
     } finally {
       setLoading(false)
     }
   }
-  
 
   return (
     <form onSubmit={handleSubmit} className="space-y-8">
@@ -265,49 +264,7 @@ export default function AdminPropertyForm({ property }: { property?: Property })
         </button>
       </div>
 
-      {/* Images */}
-      <div className="bg-white p-6 rounded-lg shadow">
-        <h3 className="text-lg font-semibold mb-4">Images</h3>
-        <input type="file" accept="image/*" multiple onChange={handleImageChange} />
-        <div className="grid grid-cols-3 gap-4 mt-4">
-          {imageUrls.map((url, idx) => (
-            <div key={idx} className="relative">
-              <img
-                src={url}
-                className="w-full h-32 object-cover rounded"
-                alt="Existing"
-              />
-              <button
-                type="button"
-                onClick={() =>
-                  setImageUrls((urls) => urls.filter((_, i) => i !== idx))
-                }
-                className="absolute top-1 right-1 bg-red-500 text-white rounded px-2"
-              >
-                X
-              </button>
-            </div>
-          ))}
-          {images.map((img, idx) => (
-            <div key={idx} className="relative">
-              <img
-                src={URL.createObjectURL(img)}
-                className="w-full h-32 object-cover rounded"
-                alt="Preview"
-              />
-              <button
-                type="button"
-                onClick={() =>
-                  setImages((prev) => prev.filter((_, i) => i !== idx))
-                }
-                className="absolute top-1 right-1 bg-red-500 text-white rounded px-2"
-              >
-                X
-              </button>
-            </div>
-          ))}
-        </div>
-      </div>
+      
 
       {/* Submit */}
       <div className="text-right">
@@ -326,4 +283,3 @@ export default function AdminPropertyForm({ property }: { property?: Property })
     </form>
   )
 }
-  }

@@ -13,19 +13,6 @@ export default function HeroSection() {
 
   return (
     <section className=" bg-black relative h-screen flex items-center">
-      {/* Background Image */}
-      <div className="absolute inset-0 z-0">
-        <Image
-          src="/placeholder.svg?height=1080&width=1920"
-          alt="Luxury Property"
-          fill
-          className="object-cover"
-          priority
-        />
-        <div className="absolute inset-0 bg-black/50"></div>
-      </div>
-
-      {/* Content */}
       <div className="container mx-auto px-4 relative z-10">
         <div
           className={`max-w-3xl transition-all duration-1000 transform ${
